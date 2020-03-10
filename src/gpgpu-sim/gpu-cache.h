@@ -265,6 +265,21 @@ public:
     {
         return addr & ~(m_line_sz-1);
     }
+    void set_assoc(unsigned n)
+	{
+    	//set new assoc. L1 cache dynamically resized in Volta
+    	m_assoc = n;
+	}
+    unsigned get_nset() const
+	{
+		assert( m_valid );
+		return m_nset;
+	}
+    unsigned get_total_size_inKB() const
+	{
+		assert( m_valid );
+		return (m_assoc*m_nset*m_line_sz)/1024;
+	}
     FuncCache get_cache_status() {return cache_status;}
     char *m_config_string;
     char *m_config_stringPrefL1;

@@ -303,6 +303,8 @@ public:
    unsigned long long start_cycle;
    unsigned long long end_cycle;
    unsigned m_launch_latency;
+
+   mutable bool volta_cache_config_set;
 };
 
 struct core_config {
@@ -342,6 +344,8 @@ struct core_config {
     unsigned gpgpu_cache_constl1_linesize;
 
 	unsigned gpgpu_max_insn_issue_per_warp;
+
+	bool adaptive_volta_cache_config;
 };
 
 // bounded stack that implements simt reconvergence using pdom mechanism from MICRO'07 paper

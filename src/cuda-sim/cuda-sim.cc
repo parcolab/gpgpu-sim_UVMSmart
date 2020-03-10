@@ -683,10 +683,10 @@ void ptx_instruction::set_bar_type()
 
 void ptx_instruction::set_opcode_and_latency()
 {
-	unsigned int_latency[5];
+	unsigned int_latency[6];
 	unsigned fp_latency[5];
 	unsigned dp_latency[5];
-	unsigned int_init[5];
+	unsigned int_init[6];
 	unsigned fp_init[5];
 	unsigned dp_init[5];
 	/*
@@ -696,9 +696,9 @@ void ptx_instruction::set_opcode_and_latency()
 	 * [3] MAD
 	 * [4] DIV
 	 */
-	sscanf(opcode_latency_int, "%u,%u,%u,%u,%u",
+	sscanf(opcode_latency_int, "%u,%u,%u,%u,%u,%u",
 			&int_latency[0],&int_latency[1],&int_latency[2],
-			&int_latency[3],&int_latency[4]);
+			&int_latency[3],&int_latency[4],&int_latency[5]);
 	sscanf(opcode_latency_fp, "%u,%u,%u,%u,%u",
 			&fp_latency[0],&fp_latency[1],&fp_latency[2],
 			&fp_latency[3],&fp_latency[4]);
@@ -707,7 +707,7 @@ void ptx_instruction::set_opcode_and_latency()
 			&dp_latency[3],&dp_latency[4]);
 	sscanf(opcode_initiation_int, "%u,%u,%u,%u,%u",
 			&int_init[0],&int_init[1],&int_init[2],
-			&int_init[3],&int_init[4]);
+			&int_init[3],&int_init[4],&int_init[5]);
 	sscanf(opcode_initiation_fp, "%u,%u,%u,%u,%u",
 			&fp_init[0],&fp_init[1],&fp_init[2],
 			&fp_init[3],&fp_init[4]);
@@ -881,8 +881,8 @@ void ptx_instruction::set_opcode_and_latency()
       op = SFU_OP;
       break;
    case SHFL_OP:
-	   latency = 32;
-	   initiation_interval = 15;
+	   latency = int_latency[5];
+	   initiation_interval = int_init[5];
 	   break;
    default: 
        break;
