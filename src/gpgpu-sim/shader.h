@@ -1394,6 +1394,8 @@ struct shader_core_config : public core_config
     unsigned ldst_unit_response_queue_size;
 
     int simt_core_sim_order; 
+	
+	unsigned smem_latency;
     
     unsigned mem2device(unsigned memid) const { return memid + n_simt_clusters; }
 

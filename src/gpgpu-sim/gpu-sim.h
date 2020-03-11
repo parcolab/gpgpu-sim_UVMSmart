@@ -215,7 +215,6 @@ struct memory_config {
       m_L2_config.init(&m_address_mapping);
 
       m_valid = true;
-      icnt_flit_size = 32; // Default 32
    }
    void reg_options(class OptionParser * opp);
 

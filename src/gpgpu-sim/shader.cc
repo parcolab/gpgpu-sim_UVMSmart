@@ -1978,8 +1978,9 @@ ldst_unit::ldst_unit( gpgpu_sim *gpu,
                       shader_core_stats *stats,
 		      class gpgpu_new_stats *new_stats,
                       unsigned sid,
-                      unsigned tpc ) : pipelined_simd_unit(NULL,config,3,core), m_next_wb(config)
+                      unsigned tpc ) : pipelined_simd_unit(NULL,config,config->smem_latency,core), m_next_wb(config)
 {
+	assert(config->smem_latency > 1);
     init( gpu,
 	  icnt,
           mf_allocator,
@@ -2170,7 +2171,10 @@ void ldst_unit::writeback()
 
 unsigned ldst_unit::clock_multiplier() const
 { 
-    return m_config->mem_warp_parts; 
+	if(m_config->mem_unit_ports)
+			return m_config->mem_unit_ports;
+	else
+			return m_config->mem_warp_parts; 
 }
 /*
 void ldst_unit::issue( register_set &reg_set )
@@ -2291,9 +2295,9 @@ void ldst_unit::cycle()
        unsigned warp_id = pipe_reg.warp_id();
        if( pipe_reg.is_load() ) {
            if( pipe_reg.space.get_type() == shared_space ) {
-               if( m_pipeline_reg[2]->empty() ) {
+               if( m_pipeline_reg[m_config->smem_latency-1]->empty() ) {
                    // new shared memory request
-                   move_warp(m_pipeline_reg[2],m_dispatch_reg);
+                   move_warp(m_pipeline_reg[m_config->smem_latency-1],m_dispatch_reg);
                    m_dispatch_reg->clear();
                }
            } else {

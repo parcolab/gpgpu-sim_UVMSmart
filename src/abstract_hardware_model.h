@@ -338,6 +338,7 @@ struct core_config {
     unsigned gpgpu_shmem_sizeDefault;
     unsigned gpgpu_shmem_sizePrefL1;
     unsigned gpgpu_shmem_sizePrefShared;
+	unsigned mem_unit_ports;
 
     // texture and constant cache line sizes (used to determine number of memory accesses)
     unsigned gpgpu_cache_texl1_linesize;

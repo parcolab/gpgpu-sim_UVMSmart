@@ -294,6 +294,9 @@ void memory_config::reg_options(class OptionParser * opp)
     option_parser_register(opp, "-dram_latency", OPT_UINT32, &dram_latency,
                      "DRAM latency (default 30)",
                      "30");
+    option_parser_register(opp, "-icnt_flit_size", OPT_UINT32, &icnt_flit_size,
+                               "icnt_flit_size",
+                               "32");
 
     m_address_mapping.addrdec_setoption(opp);
 }
@@ -386,6 +389,9 @@ void shader_core_config::reg_options(class OptionParser * opp)
                  "16");
     option_parser_register(opp, "-gpgpu_shmem_limited_broadcast", OPT_BOOL, &shmem_limited_broadcast, 
                  "Limit shared memory to do one broadcast per cycle (default on)",
+                 "1");
+    option_parser_register(opp, "-mem_unit_ports", OPT_INT32, &mem_unit_ports,
+                 "The number of memory transactions allowed per core cycle",
                  "1");
     option_parser_register(opp, "-gpgpu_shmem_warp_parts", OPT_INT32, &mem_warp_parts,  
                  "Number of portions a warp is divided into for shared memory bank conflict check ",
