@@ -54,7 +54,6 @@ if [ -f $GPUWATTCH_CONFIG ]; then
     echo "Found GPUWATTCH config file: $GPUWATTCH_CONFIG"
 else
     echo "Unknown config: $GPUWATTCH_CONFIG"
-    exit 0
 fi
 
 for BMK in $BENCHMARKS; do

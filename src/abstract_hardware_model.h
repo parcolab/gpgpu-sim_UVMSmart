@@ -345,6 +345,7 @@ struct core_config {
     unsigned gpgpu_cache_constl1_linesize;
 
 	unsigned gpgpu_max_insn_issue_per_warp;
+	bool gmem_skip_L1D;
 
 	bool adaptive_volta_cache_config;
 };

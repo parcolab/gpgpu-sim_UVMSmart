@@ -153,6 +153,7 @@ public:
                           &sif,&mshr_type,&m_mshr_entries,&m_mshr_max_merge,
                           &m_miss_queue_size, &m_result_fifo_entries,
                           &m_data_port_width);
+		printf("!@#$%^&*()ntok:%d\n",ntok);
 
         if ( ntok < 11 ) {
             if ( !strcmp(config,"none") ) {

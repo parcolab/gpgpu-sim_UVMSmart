@@ -1350,8 +1350,6 @@ struct shader_core_config : public core_config
     mutable cache_config m_L1C_config;
     mutable l1d_cache_config m_L1D_config;
 
-    bool gmem_skip_L1D; // on = global memory access always skip the L1 cache 
-    
     bool gpgpu_dwf_reg_bankconflict;
 
     int gpgpu_num_sched_per_core;
